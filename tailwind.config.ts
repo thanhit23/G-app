@@ -3,9 +3,11 @@ import type { Config } from "tailwindcss";
 import { colorPlugin } from './tw/colors'
 
 export default {
+  darkMode: ["class"],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/containers/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
@@ -117,6 +119,7 @@ export default {
       },
       black: {
         DEFAULT: '#000000',
+        1: '#0a0a0a',
         quartz: {
           1: '#181818',
           2: '#4C4949',
@@ -129,6 +132,7 @@ export default {
           9: '#1C1C1C',
           10: '#4A4A4A',
           11: '#79747E',
+          12: '#333638',
         },
         philippine_gray: '#8E8E8E',
         philippine_gray_2: '#D9D9D9',
@@ -162,6 +166,7 @@ export default {
         5: '#F4E2E3',
       },
     }),
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     require("tailwindcss-animate")
   ],
 } satisfies Config;
