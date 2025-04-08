@@ -17,3 +17,5 @@ export { default as Star } from './Star';
 export { default as Instagram } from './Instagram';
 export { default as Bell } from './Bell';
 export { default as More } from './More';
+export { default as Filter } from './Filter';
+export { default as Send } from './Send';

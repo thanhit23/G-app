@@ -1,7 +1,7 @@
 import plugin from 'tailwindcss/plugin';
 import hexRgb from 'hex-to-rgb';
 
-const hexToRgb = (hex: any) => {
+const hexToRgb = (hex: string) => {
   const [r, g, b] = hexRgb(hex);
   return `${r} ${g} ${b}`;
 };
@@ -9,7 +9,7 @@ const hexToRgb = (hex: any) => {
 const colorToVar = (color = {}, nextKey = '') => {
   let result = {};
 
-  Object.entries(color).forEach(([key, value]) => {
+  Object.entries(color).forEach(([key, value = '']) => {
     const newKey = nextKey
       ? key === 'DEFAULT'
         ? `${nextKey}`
@@ -19,10 +19,10 @@ const colorToVar = (color = {}, nextKey = '') => {
     if (typeof value === 'object') {
       result = {
         ...result,
-        ...colorToVar(value, newKey),
+        ...colorToVar(value as object, newKey),
       };
     } else {
-      result[`--${newKey}`] = hexToRgb(value);
+      result[`--${newKey}`] = hexToRgb(value as string);
     }
   });
 
@@ -30,9 +30,9 @@ const colorToVar = (color = {}, nextKey = '') => {
 };
 
 const colorToTheme = (color = {}, nextKey = '') => {
-  let result = {};
+  const result = {};
 
-  Object.entries(color).forEach(([key, value]) => {
+  Object.entries(color).forEach(([key, value = '']) => {
     const newKey = nextKey
       ? key === 'DEFAULT'
         ? `${nextKey}`
@@ -40,7 +40,7 @@ const colorToTheme = (color = {}, nextKey = '') => {
       : key;
 
     if (typeof value === 'object') {
-      result[key] = colorToTheme(value, newKey);
+      result[key] = colorToTheme(value as object, newKey);
     } else {
       result[key] = `rgb(var(--${newKey}) / <alpha-value>)`;
     }
@@ -53,7 +53,7 @@ export const colorPlugin = plugin.withOptions(
   function (options = {}) {
     return function ({ addBase }) {
       addBase({
-        ':root': colorToVar(options as {}),
+        ':root': colorToVar(options as object),
       });
     };
   },
@@ -61,7 +61,7 @@ export const colorPlugin = plugin.withOptions(
     return {
       theme: {
         extend: {
-          colors: colorToTheme(options as {}),
+          colors: colorToTheme(options as object),
         },
       },
     };

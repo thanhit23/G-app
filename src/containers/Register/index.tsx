@@ -21,9 +21,9 @@ import {
   FormMessage,
 } from 'src/components/ui/form';
 import { Input } from 'src/components/ui/input';
-import { useSignIn } from 'src/queries';
+import { useSignUp } from 'src/queries';
 
-const loginSchema = z.object({
+const registerSchema = z.object({
   email: z
     .string()
     .min(1, 'Vui lòng nhập tên người dùng, số điện thoại hoặc email'),
@@ -34,20 +34,22 @@ const loginSchema = z.object({
       /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z])/,
       'Mật khẩu phải chứa ít nhất 1 số, 1 ký tự đặc biệt và 1 chữ in hoa',
     ),
+  username: z.string().min(1, 'Vui lòng nhập tên người dùng'),
 });
 
-type LoginFormValues = z.infer<typeof loginSchema>;
+type RegisterFormValues = z.infer<typeof registerSchema>;
 
-export default function LoginPage() {
-  const form = useForm<LoginFormValues>({
-    resolver: zodResolver(loginSchema),
+export default function RegisterPage() {
+  const form = useForm<RegisterFormValues>({
+    resolver: zodResolver(registerSchema),
     defaultValues: {
       email: '',
       password: '',
+      username: '',
     },
   });
 
-  const { mutate: signIn, isPending } = useSignIn({
+  const { mutate: signUp, isPending } = useSignUp({
     onError(error: any) {
       if (error?.response?.data?.message) {
         form.setError('email', {
@@ -58,12 +60,12 @@ export default function LoginPage() {
     },
   });
 
-  const onSubmit = (data: LoginFormValues) => signIn(data);
+  const onSubmit = (data: RegisterFormValues) => signUp(data);
 
   const renderBlurText = useMemo(
     () => (
       <BlurText
-        text="Đăng nhập bằng tài khoản"
+        text="Đăng ký tài khoản"
         className="justify-center text-md font-bold mb-2"
       />
     ),
@@ -81,6 +83,23 @@ export default function LoginPage() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
                 control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        type="text"
+                        placeholder="Vui lòng nhập tên người dùng"
+                        className="bg-[#16181c] border-none h-12 text-white placeholder:text-gray-500"
+                      />
+                    </FormControl>
+                    <FormMessage className="text-[10px] text-red-500" />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
                 name="email"
                 render={({ field }) => (
                   <FormItem>
@@ -88,7 +107,7 @@ export default function LoginPage() {
                       <Input
                         {...field}
                         type="text"
-                        placeholder="Tên người dùng, số điện thoại hoặc email"
+                        placeholder="Vui lòng nhập email"
                         className="bg-[#16181c] border-none h-12 text-white placeholder:text-gray-500"
                       />
                     </FormControl>
@@ -105,7 +124,7 @@ export default function LoginPage() {
                       <Input
                         {...field}
                         type="password"
-                        placeholder="Mật khẩu"
+                        placeholder="Vui lòng nhập mật khẩu"
                         className="bg-[#16181c] border-none h-12 text-white placeholder:text-gray-500"
                       />
                     </FormControl>
@@ -118,7 +137,7 @@ export default function LoginPage() {
                 className="w-full bg-white text-black hover:bg-white/90 h-12 font-semibold"
                 disabled={isPending}
               >
-                {isPending ? <Loader2 className="animate-spin" /> : 'Đăng nhập'}
+                {isPending ? <Loader2 className="animate-spin" /> : 'Đăng ký'}
               </Button>
             </form>
           </Form>
