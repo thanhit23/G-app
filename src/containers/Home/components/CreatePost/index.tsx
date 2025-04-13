@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar';
+import { Avatar, AvatarImage } from 'src/components/ui/avatar';
 import { Button } from 'src/components/ui/button';
 import {
   Dialog,
@@ -10,17 +10,19 @@ import {
   DialogTitle,
   DialogTrigger,
 } from 'src/components/ui/dialog';
+import Storage from 'src/utils/storage';
 
 import FormCreatePost from './FormCreatePost';
 
 const NewPost = () => {
+  const userInfo = Storage.getUserInfo();
+
   const [open, setOpen] = useState<boolean>(false);
 
   return (
     <div className="px-6 py-4 flex items-center gap-2">
       <Avatar className="h-9 w-9">
-        <AvatarImage src="https://github.com/shadcn.png" />
-        <AvatarFallback>CN</AvatarFallback>
+        <AvatarImage src={userInfo?.avatar || ''} />
       </Avatar>
 
       <Dialog open={open} onOpenChange={setOpen}>

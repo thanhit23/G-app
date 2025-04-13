@@ -10,4 +10,14 @@ declare namespace SearchParams {
   export interface SuggestStatus {
     question?: string;
   }
+
+  export interface Profile { 
+    username: string 
+  }
+  
+  export interface PostEntity extends Base {
+    username: string 
+  }
+
+  export type NewsFeed = Base
 }

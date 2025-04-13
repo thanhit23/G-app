@@ -1,2 +1,3 @@
-export * from './ai';
+export * from './post';
+export * from './news-feed';
 export * from './user';

@@ -5,6 +5,7 @@ import SideBar from 'src/components/layouts/SideBar';
 
 import './globals.css';
 
+import Authentication from 'src/components/provider/Authentication';
 import ReactQueryProvider from 'src/components/provider/ReactQuery';
 
 const geistSans = Geist({
@@ -33,8 +34,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReactQueryProvider>
-          <SideBar />
-          {children}
+          <Authentication>
+            <SideBar />
+            {children}
+          </Authentication>
         </ReactQueryProvider>
       </body>
     </html>

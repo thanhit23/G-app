@@ -52,7 +52,7 @@ export default function RegisterPage() {
   const { mutate: signUp, isPending } = useSignUp({
     onError(error: any) {
       if (error?.response?.data?.message) {
-        form.setError('email', {
+        form.setError(error?.response?.data.type, {
           message: error.response.data.message,
           type: 'manual',
         });
