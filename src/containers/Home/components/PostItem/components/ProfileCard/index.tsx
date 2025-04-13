@@ -1,15 +1,15 @@
-"use client"
+'use client';
 
+import { Plus } from 'src/components/Icons';
+import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar';
+import { Button } from 'src/components/ui/button';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "src/components/ui/dialog"
-import { Avatar, AvatarFallback, AvatarImage } from "src/components/ui/avatar"
-import { Button } from "src/components/ui/button"
-import { Plus } from "src/components/Icons"
+} from 'src/components/ui/dialog';
 
 const ProfileCard = () => {
   return (
@@ -17,7 +17,7 @@ const ProfileCard = () => {
       <DialogTrigger asChild>
         <div className="cursor-pointer relative group h-9 w-9">
           <Avatar className="h-9 w-9">
-            <AvatarImage src="https://github.com/shadcn.png"/>
+            <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
           <div className="absolute -bottom-1 -right-1 h-4 w-4 rounded-full bg-white text-black flex items-center justify-center">
@@ -53,7 +53,7 @@ const ProfileCard = () => {
         </div>
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};
 
 export default ProfileCard;

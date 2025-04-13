@@ -12,6 +12,7 @@ const compat = new FlatCompat({
   recommendedConfig: typeScriptEsLintPlugin.configs['recommended'],
 });
 
+/** @type {import('eslint').Linter.Config[]} */
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   ...compat.config({

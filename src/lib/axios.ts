@@ -20,7 +20,6 @@ export class Axios {
       (config) => {
         if (typeof window !== 'undefined') {
           const token = Storage.getAccessToken();
-          console.log(token, 'token');
 
           if (token) {
             Object.assign(config.headers, {

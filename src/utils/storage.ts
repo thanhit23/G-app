@@ -41,7 +41,7 @@ class Storage {
 
     if (userInfo) {
       try {
-        return userInfo;
+        return JSON.parse(userInfo) as Model.User;
       } catch (error) {
         console.log(error, 'error');
         return null;

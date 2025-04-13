@@ -29,7 +29,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from 'src/components/ui/dropdown-menu';
-import FormCreatePost from 'src/containers/Home/components/NewPost/FormCreatePost';
+import FormCreatePost from 'src/containers/Home/components/CreatePost/FormCreatePost';
 import { cn } from 'src/lib/utils';
 import Storage from 'src/utils/storage';
 

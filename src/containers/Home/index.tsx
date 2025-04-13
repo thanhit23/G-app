@@ -1,17 +1,24 @@
 'use client';
 
+import React from 'react';
+
 import Link from 'next/link';
 
 import Header from 'src/components/layouts/Header';
 import { Divider } from 'src/components/ui/divider';
-import Post from 'src/containers/Home/components/Post';
+import { useFetchNewsFeed } from 'src/queries/news-feed';
 import Storage from 'src/utils/storage';
 
-import NewPost from './components/NewPost';
+import CreatePost from './components/CreatePost';
+import PostItem from './components/PostItem';
 
 const Home = () => {
   const userInfo = Storage.getUserInfo();
-  console.log('userInfo', userInfo);
+
+  const { data: newsFeed } = useFetchNewsFeed({
+    take: 10,
+    page: 1,
+  });
 
   return (
     <div className="flex justify-center min-h-screen px-10 bg-black-1">
@@ -20,13 +27,16 @@ const Home = () => {
         <div className="border border-solid border-grey-2 pt-2 overflow-x-hidden shadow-[0_0_12px_0_#0000000a] bg-black-quartz-1 rounded-tr-3xl rounded-tl-3xl">
           {userInfo && (
             <>
-              <NewPost />
+              <CreatePost />
               <Divider />
             </>
           )}
-          <Post follower />
-          <Divider />
-          <Post />
+          {(newsFeed?.data || []).map((post, index) => (
+            <React.Fragment key={index}>
+              <PostItem entity={post} follower />
+              <Divider />
+            </React.Fragment>
+          ))}
         </div>
       </div>
       {!userInfo && (
@@ -37,6 +47,12 @@ const Home = () => {
           <span className="text-grey-3 text-[15px] text-center">
             Xem mọi người đang nói về điều gì và tham gia cuộc trò chuyện.
           </span>
+          <Link
+            href="/register"
+            className="text-grey-3 text-[15px] text-center hover:text-white transition-all duration-300"
+          >
+            Đăng ký bằng tên người dùng
+          </Link>
           <Link
             href="/login"
             className="text-grey-3 text-[15px] text-center hover:text-white transition-all duration-300"
