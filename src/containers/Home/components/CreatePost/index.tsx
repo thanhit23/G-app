@@ -28,7 +28,7 @@ const NewPost = () => {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger className="flex-1">
           <div className="flex-1 cursor-text h-9 flex items-center">
-            <span className="text-grey-3 text-[15px]">Có gì mới?</span>
+            <span className="text-grey-3 text-sm-1.5">Có gì mới?</span>
           </div>
         </DialogTrigger>
         <DialogContent className="border-[#f3f5f726] p-0 max-w-[620px] gap-0 rounded-3xl">
@@ -41,7 +41,7 @@ const NewPost = () => {
           variant="outline"
           className="rounded-[10px] font-semibold border-[#f3f5f726]"
         >
-          Đăng
+          Post
         </Button>
       </div>
     </div>

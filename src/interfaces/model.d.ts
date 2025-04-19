@@ -9,21 +9,25 @@ declare namespace Model {
     avatar: string;
     address: string;
     bio: string;
+    isFollowing: boolean;
     countFollowers: number;
     countFollowing: number;
+    totalFollower: number;
+    totalFollowing: number;
   }
 
   export interface PostEntity {
     id: string;
-    created_at: string;
-    updated_at: string;
+    createdAt: string;
+    createdAt: string;
     userId: string;
     content: string;
     image: string | null;
     user: User;
-    is_liked: boolean;
-    total_likes: number;
-    total_comments: number;
+    hasFollowed: boolean;
+    isLiked: boolean;
+    totalLikes: number;
+    totalComments: number;
   }
 
   export interface Post {

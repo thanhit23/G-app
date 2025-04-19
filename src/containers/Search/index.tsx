@@ -45,7 +45,7 @@ const SearchPage = () => {
           <div className="p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2"></div>
-              <h1 className="text-[15px] font-semibold">Tìm kiếm</h1>
+              <h1 className="text-sm-1.5 font-semibold">Search</h1>
               <button className="text-white">
                 <More />
               </button>
@@ -59,7 +59,7 @@ const SearchPage = () => {
               </div>
               <input
                 type="text"
-                placeholder="Tìm kiếm"
+                placeholder="Search"
                 className="bg-black text-white w-full py-2.5 pl-11 pr-10 rounded-full focus:outline-none"
               />
               <div className="absolute inset-y-0 right-4 flex items-center">
@@ -68,8 +68,8 @@ const SearchPage = () => {
                 </button>
               </div>
             </div>
-            <h2 className="text-grey-3 text-[15px] mt-4 mb-2 font-semibold">
-              Gợi ý theo dõi
+            <h2 className="text-grey-3 text-sm-1.5 mt-4 mb-2 font-semibold">
+              Follow suggestions.
             </h2>
             <div className="divide-y divide-gray-800">
               {suggestions.map((user) => (

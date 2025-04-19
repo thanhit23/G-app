@@ -30,6 +30,20 @@ export const useFetchPosts = (
   });
 }
 
+export const useFetchPostDetail = (
+  params: SearchParams.PostDetail,
+  options: Interface.UseQueryOptions<Model.PostEntity> = {},
+): DefinedUseQueryResult<Model.PostEntity, Error> => {
+  return useQuery<Model.PostEntity, Error>({
+    queryKey: markerService.post.keys.get_post_detail(params),
+    queryFn: async () => {
+      const { data } = await markerService.post.getPostDetail(params);
+      return data.data;
+    },
+    ...options,
+  });
+}
+
 export const useCreationPost = (
   options: UseMutationOptions<any, unknown, any> = {},
 ) => {

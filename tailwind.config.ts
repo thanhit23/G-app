@@ -26,6 +26,9 @@ export default {
           '100%': { opacity: '1' },
         },
       },
+      fontSize: {
+        'sm-1.5': '15px',
+      }
     },
   },
   plugins: [

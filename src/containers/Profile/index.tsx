@@ -77,8 +77,8 @@ export default function ProfilePage() {
 
             <div className="flex justify-between items-center">
               <div className="mb-4">
-                <p className="text-grey-3 text-[15px]">
-                  {formatNumber(data?.countFollowers || 0)} người theo dõi
+                <p className="text-grey-3 text-sm-1.5">
+                  {formatNumber(data?.countFollowers || 0)} Followers
                 </p>
               </div>
 
@@ -117,13 +117,13 @@ export default function ProfilePage() {
                 value="replies"
                 className="flex-1 data-[state=active]:border-b-2 data-[state=active]:border-white rounded-none text-gray-500 py-3 font-semibold"
               >
-                Thread trả lời
+                Reply thread
               </TabsTrigger>
               <TabsTrigger
                 value="reposts"
                 className="flex-1 data-[state=active]:border-b-2 data-[state=active]:border-white rounded-none text-gray-500 py-3 font-semibold"
               >
-                Bài đăng lại
+                Repost
               </TabsTrigger>
             </TabsList>
 
@@ -257,7 +257,7 @@ export default function ProfilePage() {
             </TabsContent>
 
             <TabsContent value="reposts">
-              <div className="px-6 px-3">
+              <div className="px-3">
                 <div className="flex items-center gap-2 text-gray-400 mb-2 ml-4">
                   <Repost className="fill-gray-400 w-3 h-3" />
                   <span className="text-grey-3 text-sm">
@@ -323,7 +323,7 @@ export default function ProfilePage() {
                 </div>
               </div>
 
-              <div className="px-6 px-3">
+              <div className="px-3">
                 <div className="flex items-center gap-2 text-gray-400 mb-2 ml-4">
                   <Repost className="fill-gray-400 w-3 h-3" />
                   <span className="text-grey-3 text-sm">
