@@ -25,4 +25,9 @@ declare namespace Payload {
     post_id?: string;
     parent_id?: string;
   }
+
+  export interface FollowUser {
+    sourceUserId: string;
+    targetUserId: string;
+  }
 }

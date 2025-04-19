@@ -47,14 +47,14 @@ const UserSuggestion = ({
               unoptimized
             />
             <span className="text-xs text-gray-400">
-              {followers.toLocaleString()} người theo dõi
+              {followers.toLocaleString()} Followers
             </span>
           </div>
         </div>
       </div>
 
       <button className="bg-white text-black font-bold rounded-lg px-5 py-1.5 text-sm hover:bg-gray-200">
-        Theo dõi
+        Follow
       </button>
     </div>
   );

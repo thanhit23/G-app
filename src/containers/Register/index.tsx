@@ -10,8 +10,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2 } from 'lucide-react';
 import * as z from 'zod';
 
-import BlurText from 'src/components/Animation/BlurText';
-import SquaresBackground from 'src/components/Animation/SquaresBackground';
+import BlurText from 'src/components/core/Animation/BlurText';
+import SquaresBackground from 'src/components/core/Animation/SquaresBackground';
+import { ArrowRight } from 'src/components/Icons';
 import { Button } from 'src/components/ui/button';
 import {
   Form,
@@ -26,15 +27,15 @@ import { useSignUp } from 'src/queries';
 const registerSchema = z.object({
   email: z
     .string()
-    .min(1, 'Vui lòng nhập tên người dùng, số điện thoại hoặc email'),
+    .min(1, 'Please enter your username, phone number, or email.'),
   password: z
     .string()
-    .min(6, 'Mật khẩu phải có ít nhất 6 ký tự')
+    .min(6, 'Password must be at least 6 characters.')
     .regex(
       /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z])/,
-      'Mật khẩu phải chứa ít nhất 1 số, 1 ký tự đặc biệt và 1 chữ in hoa',
+      'Password must contain at least 1 number, 1 special character, and 1 uppercase letter.',
     ),
-  username: z.string().min(1, 'Vui lòng nhập tên người dùng'),
+  username: z.string().min(1, 'Please enter your username.'),
 });
 
 type RegisterFormValues = z.infer<typeof registerSchema>;
@@ -90,7 +91,7 @@ export default function RegisterPage() {
                       <Input
                         {...field}
                         type="text"
-                        placeholder="Vui lòng nhập tên người dùng"
+                        placeholder="Please enter your username."
                         className="bg-[#16181c] border-none h-12 text-white placeholder:text-gray-500"
                       />
                     </FormControl>
@@ -107,7 +108,7 @@ export default function RegisterPage() {
                       <Input
                         {...field}
                         type="text"
-                        placeholder="Vui lòng nhập email"
+                        placeholder="Please enter your email."
                         className="bg-[#16181c] border-none h-12 text-white placeholder:text-gray-500"
                       />
                     </FormControl>
@@ -124,7 +125,7 @@ export default function RegisterPage() {
                       <Input
                         {...field}
                         type="password"
-                        placeholder="Vui lòng nhập mật khẩu"
+                        placeholder="Please enter your password."
                         className="bg-[#16181c] border-none h-12 text-white placeholder:text-gray-500"
                       />
                     </FormControl>
@@ -137,7 +138,7 @@ export default function RegisterPage() {
                 className="w-full bg-white text-black hover:bg-white/90 h-12 font-semibold"
                 disabled={isPending}
               >
-                {isPending ? <Loader2 className="animate-spin" /> : 'Đăng ký'}
+                {isPending ? <Loader2 className="animate-spin" /> : 'Sign up'}
               </Button>
             </form>
           </Form>
@@ -147,7 +148,7 @@ export default function RegisterPage() {
               href="/forgot-password"
               className="text-sm text-grey-3 hover:text-white"
             >
-              Bạn quên mật khẩu ư?
+              Forgot your password?
             </Link>
           </div>
 
@@ -172,20 +173,9 @@ export default function RegisterPage() {
               width={34}
               height={34}
             />
-            <span>Tiếp tục bằng Instagram</span>
+            <span>Continue with Instagram</span>
             <span className="ml-auto">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M9 18l6-6-6-6" />
-              </svg>
+              <ArrowRight />
             </span>
           </Button>
         </div>
@@ -194,16 +184,16 @@ export default function RegisterPage() {
           <div className="flex justify-center space-x-4 text-xs text-gray-500">
             <span>© 2025</span>
             <Link href="/terms" className="hover:text-gray-400">
-              Điều khoản của Threads
+              Terms of Threads.
             </Link>
             <Link href="/privacy" className="hover:text-gray-400">
-              Chính sách quyền riêng tư
+              Privacy Policy.
             </Link>
             <Link href="/cookies" className="hover:text-gray-400">
-              Chính sách cookie
+              Cookie Policy.
             </Link>
             <Link href="/report" className="hover:text-gray-400">
-              Báo cáo sự cố
+              Report an incident
             </Link>
           </div>
         </div>

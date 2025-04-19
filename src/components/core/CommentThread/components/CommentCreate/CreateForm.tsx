@@ -17,8 +17,8 @@ import Storage from 'src/utils/storage';
 const schema = z.object({
   content: z
     .string()
-    .min(1, 'Nội dung không được để trống')
-    .max(500, 'Nội dung không được vượt quá 500 ký tự'),
+    .min(1, 'Content cannot be empty')
+    .max(500, 'Content must not exceed 255 characters'),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -28,7 +28,7 @@ type Props = {
   postEntity: Model.PostEntity;
 };
 
-const CreateCommentForm: React.FC<Props> = ({ onToggle, postEntity }) => {
+const CreateForm: React.FC<Props> = ({ onToggle, postEntity }) => {
   const userInfo = Storage.getUserInfo();
 
   const { mutate: mutateCreationComment } = useCreationComment({
@@ -82,8 +82,8 @@ const CreateCommentForm: React.FC<Props> = ({ onToggle, postEntity }) => {
               <span className="text-ellipsis whitespace-nowrap overflow-hidden max-w-full text-base font-semibold">
                 {postEntity.user?.username}
               </span>
-              <span className="max-w-full text-grey-3 text-[15px]">
-                {timeAgo(postEntity.created_at)}
+              <span className="max-w-full text-grey-3 text-sm-1.5">
+                {timeAgo(postEntity.createdAt)}
               </span>
             </div>
           </div>
@@ -127,7 +127,7 @@ const CreateCommentForm: React.FC<Props> = ({ onToggle, postEntity }) => {
                   form.formState.isSubmitting || isEmpty(form.watch('content'))
                 }
               >
-                Đăng
+                Post
               </Button>
             </div>
           </div>
@@ -137,4 +137,4 @@ const CreateCommentForm: React.FC<Props> = ({ onToggle, postEntity }) => {
   );
 };
 
-export default CreateCommentForm;
+export default CreateForm;

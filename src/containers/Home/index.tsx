@@ -4,13 +4,13 @@ import React from 'react';
 
 import Link from 'next/link';
 
+import PostThread from 'src/components/core/PostThread';
 import Header from 'src/components/layouts/Header';
 import { Divider } from 'src/components/ui/divider';
 import { useFetchNewsFeed } from 'src/queries/news-feed';
 import Storage from 'src/utils/storage';
 
 import CreatePost from './components/CreatePost';
-import PostItem from './components/PostItem';
 
 const Home = () => {
   const userInfo = Storage.getUserInfo();
@@ -33,7 +33,7 @@ const Home = () => {
           )}
           {(newsFeed?.data || []).map((post, index) => (
             <React.Fragment key={index}>
-              <PostItem entity={post} follower />
+              <PostThread entity={post.post} />
               <Divider />
             </React.Fragment>
           ))}
@@ -42,22 +42,22 @@ const Home = () => {
       {!userInfo && (
         <div className="flex flex-col items-center justify-center gap-3 border border-solid border-grey-2 py-8 px-6 mt-[60px] w-[337px] h-[220px] overflow-x-hidden ml-4 shadow-[0_0_12px_0_#0000000a] bg-black-quartz-1 rounded-3xl">
           <span className="text-white text-[20px] font-bold text-center">
-            Đăng nhập hoặc đăng <br /> ký Threads
+            Log in or sign up for Threads
           </span>
-          <span className="text-grey-3 text-[15px] text-center">
-            Xem mọi người đang nói về điều gì và tham gia cuộc trò chuyện.
+          <span className="text-grey-3 text-sm-1.5 text-center">
+            See what people are talking about and join the conversation.
           </span>
           <Link
             href="/register"
-            className="text-grey-3 text-[15px] text-center hover:text-white transition-all duration-300"
+            className="text-grey-3 text-sm-1.5 text-center hover:text-white transition-all duration-300"
           >
-            Đăng ký bằng tên người dùng
+            Sign up with a username
           </Link>
           <Link
             href="/login"
-            className="text-grey-3 text-[15px] text-center hover:text-white transition-all duration-300"
+            className="text-grey-3 text-sm-1.5 text-center hover:text-white transition-all duration-300"
           >
-            Đăng nhập bằng tên người dùng
+            Sign in with a username
           </Link>
         </div>
       )}
